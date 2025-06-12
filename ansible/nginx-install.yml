@@ -1,6 +1,6 @@
 ---
 - name: Install Nginx on Ubuntu and Amazon Linux
-  hosts: all
+  hosts: all_servers
   become: yes
 
   tasks:
