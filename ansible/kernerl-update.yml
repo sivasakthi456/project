@@ -1,6 +1,6 @@
 ---
 - name: Upgrade kernel for all OS
-  hosts: all_servers
+  hosts: all
   become: yes
   gather_facts: yes
   tasks:
