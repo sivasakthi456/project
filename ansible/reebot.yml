@@ -1,7 +1,7 @@
 ---
 - name: Reboot system
   become: yes
-  hosts: all_servers
+  hosts: all
   tasks:
     - name: Reboot if kernel upgraded
       reboot:
