@@ -1,6 +1,6 @@
 ---
 - name: Nginx Uninstall (Cross-platform)
-  hosts: all_servers
+  hosts: all
   become: yes
   tasks:
     - name: Print hosts info for debugging
