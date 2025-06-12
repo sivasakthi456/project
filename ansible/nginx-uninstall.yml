@@ -11,8 +11,7 @@
 
     - name: Update package manager (YUM for Amazon Linux)
       yum:
-        name: '*'
-        state: latest
+        update_cache: yes
       when: ansible_os_family == "RedHat"
 
     - name: Uninstall nginx (APT)
