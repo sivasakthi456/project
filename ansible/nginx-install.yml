@@ -1,0 +1,19 @@
+---
+- name: httpd Install
+  hosts: ubuntu
+  become: yes
+
+  tasks:
+    - name: Update apt module
+      apt:
+        update_cache: yes
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+  
+    - name: starting nginx
+      service:
+        name: nginx
+        state: started
