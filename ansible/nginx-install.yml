@@ -1,19 +1,27 @@
 ---
-- name: httpd Install
+- name: Install Nginx on Ubuntu and Amazon Linux
   hosts: all
   become: yes
 
   tasks:
-    - name: Update apt module
+    - name: Update apt cache (for Ubuntu)
       apt:
         update_cache: yes
+      when: ansible_os_family == "Debian"
 
-    - name: Install nginx
+    - name: Update yum cache (for Amazon Linux)
+      yum:
+        name: '*'
+        state: latest
+      when: ansible_os_family == "RedHat"
+
+    - name: Install nginx on Ubuntu
       apt:
         name: nginx
         state: present
-  
-    - name: starting nginx
-      service:
+      when: ansible_os_family == "Debian"
+
+    - name: Install nginx on Amazon Linux
+      yum:
         name: nginx
-        state: started
+        state: present
