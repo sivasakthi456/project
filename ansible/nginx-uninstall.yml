@@ -2,7 +2,10 @@
 - name: Nginx Uninstall (Cross-platform)
   hosts: all_servers
   become: yes
-
+  tasks:
+    - name: Print hosts info for debugging
+      debug:
+        msg: "Running on {{ hosts }} with OS family {{ ansible_os_family }}"
   tasks:
     - name: Update package manager (APT for Ubuntu)
       apt:
