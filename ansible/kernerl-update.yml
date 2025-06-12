@@ -1,6 +1,6 @@
 ---
 - name: Upgrade kernel for all OS
-  hosts: all
+  hosts: all_servers
   become: yes
   gather_facts: yes
   tasks:
@@ -24,7 +24,7 @@
         state: latest
 
 
-    - name: Upgrade kernel for Amazon Linux
+    - name: Upgrade kernel for Amazon Linux/Al
       when: ansible_distribution == "Amazon"
       dnf:
         name: kernel
