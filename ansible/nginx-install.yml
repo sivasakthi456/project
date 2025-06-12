@@ -1,6 +1,6 @@
 ---
 - name: httpd Install
-  hosts: ubuntu
+  hosts: all
   become: yes
 
   tasks:
