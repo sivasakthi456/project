@@ -24,7 +24,7 @@
         state: present
       when: ansible_os_family == "Debian"
 
-    - name: Install nginx on Amazon Linux
+    - name: Install nginx on Amazon Linux/Al
       yum:
         name: nginx
         state: present
