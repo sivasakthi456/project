@@ -4,6 +4,10 @@
   become: yes
 
   tasks:
+    - name: Print hosts info for debugging
+      debug:
+        msg: "Running on {{ hosts }} with OS family {{ ansible_os_family }}"
+
     - name: Update apt cache (for Ubuntu)
       apt:
         update_cache: yes
