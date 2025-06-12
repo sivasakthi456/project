@@ -1,19 +1,34 @@
 ---
-- name: httpd Install
+- name: Nginx Uninstall (Cross-platform)
   hosts: all
   become: yes
 
   tasks:
-    - name: Update apt module
+    - name: Update package manager (APT for Ubuntu)
       apt:
         update_cache: yes
+      when: ansible_os_family == "Debian"
 
-    - name: Install nginx
+    - name: Update package manager (YUM for Amazon Linux)
+      yum:
+        name: '*'
+        state: latest
+      when: ansible_os_family == "RedHat"
+
+    - name: Uninstall nginx (APT)
       apt:
         name: nginx
-        state: present
-  
-    - name: starting nginx
+        state: absent
+      when: ansible_os_family == "Debian"
+
+    - name: Uninstall nginx (YUM)
+      yum:
+        name: nginx
+        state: absent
+      when: ansible_os_family == "RedHat"
+
+    - name: Stop nginx service (Ubuntu & Amazon Linux)
       service:
         name: nginx
         state: stopped
+        enabled: no
