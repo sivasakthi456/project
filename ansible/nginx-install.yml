@@ -4,10 +4,6 @@
   become: yes
 
   tasks:
-    - name: Print hosts info for debugging
-      debug:
-        msg: "Running on {{ hosts }} with OS family {{ ansible_os_family }}"
-
     - name: Update apt cache (for Ubuntu)
       apt:
         update_cache: yes
@@ -15,7 +11,8 @@
 
     - name: Update yum cache (for Amazon Linux)
       yum:
-        update_cache: yes
+        name: '*'
+        state: latest
       when: ansible_os_family == "RedHat"
 
     - name: Install nginx on Ubuntu
@@ -24,7 +21,7 @@
         state: present
       when: ansible_os_family == "Debian"
 
-    - name: Install nginx on Amazon Linux/Al
+    - name: Install nginx on Amazon Linux
       yum:
         name: nginx
         state: present
