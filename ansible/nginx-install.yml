@@ -26,10 +26,3 @@
         name: nginx
         state: present
       when: ansible_os_family == "RedHat"
-
-
-    - name: Start and enable nginx service
-      service:
-        name: nginx
-        state: started
-        enabled: yes 
